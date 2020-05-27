@@ -1,17 +1,20 @@
 #
-read -p "Press [Enter] key to start installation..."
+#read -p "Press [Enter] key to start installation..."
 #
 # RHEL-8 distributables
-sudo dnf install bzip2 boost boost-devel cmake make gcc-c++ git wget
+sudo dnf install -y bzip2 boost boost-devel cmake make gcc-c++ git wget
 #
+echo "installing mkl"
 # install intel mkl
-read -p "Press [Enter] key to install Intel MKL..."
-sudo dnf config-manager --add-repo https://yum.repos.intel.com/mkl/setup/intel-mkl.repo
+#read -p "Press [Enter] key to install Intel MKL..."
+sudo dnf -y config-manager --add-repo https://yum.repos.intel.com/mkl/setup/intel-mkl.repo
 sudo rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
-sudo dnf install intel-mkl
+sudo dnf install -y intel-mkl
+
+echo "installing xerces-c"
 #
 # INSTALL XERCES-C (3.1.4)
-read -p "Press [Enter] key to install Xerces C..."
+#read -p "Press [Enter] key to install Xerces C..."
 # 1. create install dir:
 if [ ! -d "/opt/xerces-c/3.1.4" ]; then
     sudo mkdir /opt/xerces-c/
@@ -34,7 +37,8 @@ make -j
 sudo make install
 #
 # INSTALL XSD
-read -p "Press [Enter] key to install XSD..."
+echo "installing XSD"
+#read -p "Press [Enter] key to install XSD..."
 # 1. create install dir:
 if [ ! -d "/opt/xsd" ]; then
     sudo mkdir /opt/xsd
@@ -46,10 +50,12 @@ wget https://www.codesynthesis.com/download/xsd/4.0/linux-gnu/x86_64/xsd-4.0.0-x
 tar xjf xsd-4.0.0-x86_64-linux-gnu.tar.bz2
 # 4. move:
 sudo mv xsd-4.0.0-x86_64-linux-gnu /opt/xsd
+
+echo "installing dynadjust"
 #
 # INSTALL DYNADJUST
 # 1. create install dirs:
-read -p "Press [Enter] key to install DynAdjust..."
+#read -p "Press [Enter] key to install DynAdjust..."
 if [ ! -d "/opt/dynadjust/gcc/1_0_0" ]; then
     sudo mkdir /opt/dynadjust
     sudo mkdir /opt/dynadjust/gcc

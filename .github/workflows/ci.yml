@@ -1,0 +1,13 @@
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install DNA prerequisites
+        timeout-minutes: 120
+        run: |
+          yum install -y sudo dnf-plugins-core
+          sudo bash ./dynadjust/install_dna_prerequisites.sh

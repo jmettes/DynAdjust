@@ -89,9 +89,9 @@ then
 	cp ../dynadjust/dynadjust/CMakeLists.release.txt ../dynadjust/dynadjust/CMakeLists.txt
 fi
 
-cmake ../
+cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ../
 
-make -j
+make -j 4 VERBOSE=1
 
 #exit
 
