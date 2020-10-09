@@ -8,9 +8,9 @@ dist: bionic
 cache:
   apt: true
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 
 before_install:
   - pip install --user cpp-coveralls codecov
